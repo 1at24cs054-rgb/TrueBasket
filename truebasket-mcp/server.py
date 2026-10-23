@@ -883,6 +883,10 @@ def create_streamable_http_app():
     return starlette_app
 
 
+# Expose ASGI application instance for Vercel / serverless runtime
+app = create_streamable_http_app()
+
+
 # ==============================================================================
 # Main Entry Point
 # ==============================================================================

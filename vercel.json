@@ -3,7 +3,8 @@
   "services": {
     "truebasket-backend": {
       "root": "truebasket-backend",
-      "framework": "fastapi"
+      "framework": "fastapi",
+      "entrypoint": "app/main.py"
     },
     "truebasket-frontend": {
       "root": "truebasket-frontend",
@@ -12,6 +13,7 @@
     "truebasket-mcp": {
       "root": "truebasket-mcp",
       "runtime": "python",
+      "entrypoint": "server.py",
       "bindings": [
         {
           "type": "service",
