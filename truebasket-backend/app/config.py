@@ -38,7 +38,7 @@ class Settings(BaseSettings):
     gemma_max_output_tokens: int = 4096
 
     # OpenRouter AI Vision Configuration (PillSync Approach)
-    ai_vision_provider: str = "openrouter"
+    ai_vision_provider: str = "google"
     openrouter_api_key: Optional[str] = None
     openrouter_vision_model: str = "google/gemma-4-26b-a4b-it"
     openrouter_base_url: str = "https://openrouter.ai/api/v1"
