@@ -138,13 +138,14 @@ export function normalizeProduct(raw) {
 
 // ------------------------------------------------------------------ requests
 
+const hasBackend = import.meta.env.VITE_API_URL !== "disabled";
 const BACKEND_BASE = (import.meta.env.VITE_API_URL || "").replace(/\/+$/, "");
 
 export async function getProduct(code, { signal } = {}) {
   const clean = String(code).replace(/\s/g, "");
 
   // Try backend proxy first if available
-  if (BACKEND_BASE) {
+  if (hasBackend) {
     try {
       const data = await fetchJson(`${BACKEND_BASE}/api/products/barcode/${encodeURIComponent(clean)}`, {
         signal,
@@ -175,7 +176,7 @@ export async function getProduct(code, { signal } = {}) {
 
 /** Full-text search with resilient backend proxy and Open Food Facts fallback. */
 export async function searchProducts(query, { page = 1, pageSize = 24, country = "world", signal } = {}) {
-  if (BACKEND_BASE) {
+  if (hasBackend) {
     try {
       const bParams = new URLSearchParams({
         q: query,
@@ -225,7 +226,7 @@ export async function getAlternatives(product, { country = "world", signal } = {
 
   let best = { products: [], category: cats[0] };
 
-  if (BACKEND_BASE) {
+  if (hasBackend) {
     try {
       for (const cat of cats.slice(0, 3)) {
         const bParams = new URLSearchParams({

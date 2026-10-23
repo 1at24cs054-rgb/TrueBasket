@@ -17,8 +17,8 @@
 
 const API_BASE = (import.meta.env.VITE_API_URL || "").replace(/\/+$/, "");
 
-/** True when a Gemma 4 label-reading backend is configured. */
-export const labelReaderEnabled = Boolean(API_BASE);
+/** True when a Gemma 4 label-reading backend is enabled (defaults to true for unified deployments). */
+export const labelReaderEnabled = import.meta.env.VITE_API_URL !== "disabled";
 const DEFAULT_TIMEOUT_MS = Number(import.meta.env.VITE_API_TIMEOUT_MS) || 90_000;
 
 export const ANALYZE_ENDPOINT = `${API_BASE}/api/products/analyze-image`;
@@ -80,8 +80,8 @@ export async function analyzeProduct({
   signal,
   timeoutMs = DEFAULT_TIMEOUT_MS,
 }) {
-  if (!API_BASE) {
-    throw new ApiError("Label reading isn’t configured (VITE_API_URL is not set).", { kind: "unknown" });
+  if (!labelReaderEnabled) {
+    throw new ApiError("Label reading isn’t configured.", { kind: "unknown" });
   }
   if (!(image instanceof Blob)) {
     throw new ApiError("Please choose a product image first.", { kind: "unknown" });

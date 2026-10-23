@@ -1,0 +1,57 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "truebasket-backend": {
+      "root": "truebasket-backend",
+      "framework": "fastapi"
+    },
+    "truebasket-frontend": {
+      "root": "truebasket-frontend",
+      "framework": "vite"
+    },
+    "truebasket-mcp": {
+      "root": "truebasket-mcp",
+      "runtime": "python",
+      "bindings": [
+        {
+          "type": "service",
+          "service": "truebasket-backend",
+          "format": "url",
+          "env": "TRUEBASKET_API_BASE_URL"
+        }
+      ]
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": {
+        "service": "truebasket-backend"
+      }
+    },
+    {
+      "source": "/docs",
+      "destination": {
+        "service": "truebasket-backend"
+      }
+    },
+    {
+      "source": "/openapi.json",
+      "destination": {
+        "service": "truebasket-backend"
+      }
+    },
+    {
+      "source": "/mcp/(.*)",
+      "destination": {
+        "service": "truebasket-mcp"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "truebasket-frontend"
+      }
+    }
+  ]
+}

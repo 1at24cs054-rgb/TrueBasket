@@ -12,12 +12,12 @@
  */
 import { fetchJson } from "../lib/http.js";
 
-const BASE = (import.meta.env.VITE_PRICE_API_URL || "").replace(/\/+$/, "");
+const BASE = (import.meta.env.VITE_PRICE_API_URL !== undefined ? import.meta.env.VITE_PRICE_API_URL : (import.meta.env.VITE_API_URL || "")).replace(/\/+$/, "");
 
-export const priceFeedEnabled = Boolean(BASE);
+export const priceFeedEnabled = import.meta.env.VITE_PRICE_API_URL !== "disabled";
 
 export async function getLivePrices({ barcode, query, pincode }, { signal } = {}) {
-  if (!BASE) return null;
+  if (!priceFeedEnabled) return null;
   const params = new URLSearchParams();
   if (barcode) params.set("barcode", barcode);
   if (query) params.set("query", query);
