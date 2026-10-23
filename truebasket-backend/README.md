@@ -1,6 +1,6 @@
 # TrueBasket Backend — Phase 1: Setup & Service Verification
 
-TrueBasket is a **Gemma 4-powered food ingredient intelligence and smart shopping application** built for the AWS Builders Hackathon.
+TrueBasket is a **Gemma 4-powered food ingredient intelligence and smart shopping application** built for the MLH × Google Gemma 4 hackathon. Gemma 4 (`gemma-4-26b-a4b-it`) is called through the Gemini API with the `google-genai` SDK.
 
 This repository contains the FastAPI backend responsible for:
 1. **Multimodal packaging perception** with Gemma 4 (OCR, ingredients parsing, additive detection).

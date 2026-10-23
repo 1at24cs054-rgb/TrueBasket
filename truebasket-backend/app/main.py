@@ -610,9 +610,9 @@ async def get_prices(
                                 retailer_id=matched_id,
                                 retailer=matched_name,
                                 price_inr=price_val,
-                                mrp_inr=round(price_val * 1.15, 2),
+                                mrp_inr=None,  # never invent an MRP; only show it when a source provides it
                                 pack_size=pack_obj,
-                                in_stock=True,
+                                in_stock=None,  # stock is unknown from web evidence
                                 url=item.url,
                                 checked_at=datetime.now(timezone.utc).isoformat(),
                             )

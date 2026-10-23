@@ -16,6 +16,8 @@ services:
         sync: false # Set to your deployed Vercel frontend URL, e.g. https://truebasket.vercel.app
       - key: TAVILY_API_KEY
         sync: false
+      - key: AI_VISION_PROVIDER
+        value: google
       - key: GEMMA_PROVIDER
         value: google
       - key: GEMMA_MODEL
