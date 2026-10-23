@@ -1,0 +1,43 @@
+# Secrets and Environment Variables (CRITICAL: NEVER COMMIT)
+.env
+.env.*
+!.env.example
+*.local
+*.pem
+*.key
+
+# Python Virtual Environments & Dependencies
+.venv/
+venv/
+env/
+ENV/
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Node & Frontend Build
+node_modules/
+dist/
+dist-ssr/
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# IDE & OS Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Logs & Temp
+*.log
+scratch/
+tmp/
