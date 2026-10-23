@@ -1,0 +1,18 @@
+# Core Framework & Validation
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic>=2.8.0
+pydantic-settings>=2.4.0
+python-dotenv>=1.0.1
+python-multipart>=0.0.9
+
+# Async HTTP Client & Web Search
+httpx>=0.27.0
+
+# LLM & Multimodal AI (Gemma 4 via Google Developer API & OpenAI-compatible endpoints)
+google-genai>=2.0.0
+pillow>=10.0.0
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0

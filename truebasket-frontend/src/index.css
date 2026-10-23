@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   TrueBasket design tokens (Tailwind CSS v4 — CSS-first config)
+   ------------------------------------------------------------------ */
+@theme {
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-script: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+
+  /* Warm cream surfaces */
+  --color-cream-50: #fcfaf5;
+  --color-cream-100: #f7f2e8;
+  --color-cream-200: #efe6d4;
+  --color-cream-300: #e3d6bc;
+
+  /* Deep teal brand */
+  --color-teal-50: #eef6f4;
+  --color-teal-100: #d5e9e5;
+  --color-teal-200: #a9d2ca;
+  --color-teal-500: #2b7d74;
+  --color-teal-600: #1b655d;
+  --color-teal-700: #0f4c47;
+  --color-teal-800: #0b3b37;
+  --color-teal-900: #082b28;
+
+  /* Ink */
+  --color-ink-900: #1d2321;
+  --color-ink-700: #3b4441;
+  --color-ink-500: #66706c;
+  --color-ink-400: #8a928e;
+
+  /* Restrained status colours */
+  --color-sage-50: #eff5ec;
+  --color-sage-700: #3f6b35;
+  --color-amber-50: #fdf5e3;
+  --color-amber-600: #9a6a12;
+  --color-amber-400: #e7b75a;
+  --color-clay-50: #fbeeea;
+  --color-clay-700: #9b3d2b;
+  --color-slate-50: #f1f2f2;
+
+  --shadow-card: 0 1px 2px rgb(29 35 33 / 0.04), 0 4px 16px rgb(29 35 33 / 0.05);
+  --shadow-lift: 0 2px 4px rgb(29 35 33 / 0.05), 0 12px 32px rgb(29 35 33 / 0.08);
+
+  --radius-card: 1.25rem;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-cream-100 font-sans text-ink-900;
+  }
+  :focus-visible {
+    outline: 2.5px solid var(--color-teal-500);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  ::selection {
+    background: var(--color-teal-100);
+  }
+}
+
+@utility card {
+  @apply rounded-[var(--radius-card)] border border-cream-200 bg-white shadow-card;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-teal-700 text-cream-50 hover:bg-teal-800 active:bg-teal-900;
+}
+@utility btn-secondary {
+  @apply btn border border-cream-300 bg-white text-ink-900 hover:border-teal-200 hover:bg-teal-50;
+}
+@utility btn-ghost {
+  @apply btn text-ink-700 hover:bg-cream-200/70;
+}
+@utility field-label {
+  @apply mb-1.5 block text-sm font-semibold text-ink-900;
+}
+@utility field-input {
+  @apply w-full rounded-xl border border-cream-300 bg-white px-3.5 py-2.5 text-sm text-ink-900 placeholder:text-ink-400 transition-colors focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-100;
+}
+@utility eyebrow {
+  @apply text-xs font-bold uppercase tracking-[0.14em] text-teal-600;
+}
+
+/* Where-to-buy price table columns (desktop) */
+@utility price-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  @media (width >= 48rem) {
+    grid-template-columns: minmax(0, 1.3fr) 9rem 7rem 9rem auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

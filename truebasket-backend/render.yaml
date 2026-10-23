@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: truebasket-backend
+    runtime: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: CORS_ORIGINS
+        sync: false # Set to your deployed Vercel frontend URL, e.g. https://truebasket.vercel.app
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: GEMMA_PROVIDER
+        value: google
+      - key: GEMMA_MODEL
+        value: gemma-4-26b-a4b-it
+      - key: GEMMA_API_KEY
+        sync: false
